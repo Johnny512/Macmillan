@@ -1,0 +1,125 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "description": "Services provide to applications and devops to decouple AWS and SRE processes from scripts and users\n",
+        "title": "SRE API",
+        "version": "0.1.0"
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "paths": {
+        "/sreapi/v1/users": {
+            "get": {
+                "operationId": "sreapi.v1.users.get",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/sreapi_v1_userlist"
+                                }
+                            }
+                        },
+                        "description": "200 Success"
+                    }
+                },
+                "summary": "Return a list of users",
+                "tags": [
+                    "ops"
+                ]
+            },
+            "post": {
+                "operationId": "sreapi.v1.users.post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/sreapi_v1_user"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/sreapi_v1_user"
+                                }
+                            }
+                        },
+                        "description": "200 Success"
+                    }
+                },
+                "security": [],
+                "summary": "Add a users to the list",
+                "tags": [
+                    "ops"
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "sreapi_v1_userlist": {
+                "example": {
+                    "count": 5,
+                    "users": [
+                        {
+                            "user_name": "Jim Smith",
+                            "user_id": "jim@macmillan.com"
+                        },
+                        {
+                            "user_name": "Amy Tan",
+                            "user_id": "amy@macmillan.com"
+                        },
+                        {
+                            "user_name": "Johnny Castillo",
+                            "user_id": "johnny@macmillan.com"
+                        },
+                        {
+                            "user_name": "Johnny Castillo",
+                            "user_id": "johnny@macmillan.com"
+                        },
+                        {
+                            "user_name": "Johnny Castillo",
+                            "user_id": "johnny@macmillan.com"
+                        }
+                    ]
+                },
+                "properties": {
+                    "count": {
+                        "type": "integer"
+                    },
+                    "users": {
+                        "items": {
+                            "$ref": "#/components/schemas/sreapi_v1_user"
+                        },
+                        "type": "array"
+                    }
+                },
+                "title": "sreapi_v1_userlist",
+                "type": "object"
+            },
+            "sreapi_v1_user": {
+                "example": {
+                    "user_name": "Johnny Castillo",
+                    "user_id": "johnny@macmillan.com"
+                },
+                "properties": {
+                    "user_id": {
+                        "type": "string"
+                    },
+                    "user_name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
