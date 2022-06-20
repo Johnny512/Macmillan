@@ -26,8 +26,11 @@ def get_users():
 def add_user():
     with open('openapi.json', 'r+') as file:
         data = json.load(file)
+        # Grab the user to add
         user = data['components']['schemas']['sreapi_v1_user']['example']
+        # Append the user
         data['components']['schemas']['sreapi_v1_userlist']['example']['users'].append(user)
+        # Increase the user count by 1
         data['components']['schemas']['sreapi_v1_userlist']['example']['count'] += 1
         file.seek(0)
         # Save changes to file
